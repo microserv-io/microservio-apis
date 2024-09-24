@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package microservio.connection.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/microserv-io/microservio-apis-go/microservio/connection/v1;connection";
+
+service ConnectionService {
+  rpc CreateConnection(CreateConnectionRequest) returns (CreateConnectionResponse) {}
+}
+
+message CreateConnectionRequest {
+  string state = 1;
+  OAuthToken token = 2;
+}
+
+message CreateConnectionResponse {
+  Connection connection = 1;
+}
+
+message OAuthToken {
+  string access_token = 1;
+  string token_type = 2;
+  string refresh_token = 3;
+  google.protobuf.Timestamp expiry = 4;
+}
+
+message Connection {
+  string id = 1;
+  string organization_id = 2;
+  string label = 3;
+  string provider = 4;
+  OAuthToken token = 5;
+}

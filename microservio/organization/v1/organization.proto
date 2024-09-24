@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package microservio.organization.v1;
+
+option go_package = "github.com/microserv-io/microservio-apis-go/microservio/organization/v1;organization";
+
+service OrganizationService {
+  rpc ListOrganizations(ListOrganizationsRequest) returns (stream ListOrganizationsResponse) {}
+  rpc GetOrganizationByID(GetOrganizationByIDRequest) returns (GetOrganizationByIDResponse) {}
+  rpc CreateNewOrganization(CreateNewOrganizationRequest) returns (CreateNewOrganizationResponse) {}
+  rpc UpdateOrganization(UpdateOrganizationRequest) returns (UpdateOrganizationResponse) {}
+  rpc AddMemberToOrganization(AddMemberToOrganizationRequest) returns (AddMemberToOrganizationResponse) {}
+  rpc RemoveMemberFromOrganization(RemoveMemberFromOrganizationRequest) returns (RemoveMemberFromOrganizationResponse) {}
+}
+
+message ListOrganizationsRequest {}
+
+message ListOrganizationsResponse {
+  repeated Organization organizations = 1;
+}
+
+message GetOrganizationByIDRequest {
+  string organization_id = 1;
+}
+
+message CreateNewOrganizationRequest {
+  string name = 1;
+  bool has_over_usage_protection = 3;
+}
+
+message CreateNewOrganizationResponse {
+  Organization organization = 1;
+}
+
+message GetOrganizationByIDResponse {
+  Organization organization = 1;
+}
+
+message Member {
+  string organization_id = 1;
+  string user_id = 2;
+}
+
+message UpdateOrganizationRequest {
+  string id = 1;
+  string name = 2;
+  bool has_over_usage_protection = 3;
+}
+
+message UpdateOrganizationResponse {
+  Organization organization = 1;
+}
+
+message AddMemberToOrganizationRequest {
+  string id = 1;
+  string user_id = 2;
+}
+
+message AddMemberToOrganizationResponse {
+  Organization organization = 1;
+}
+
+message RemoveMemberFromOrganizationRequest {
+  string id = 1;
+  string user_id = 2;
+}
+
+message RemoveMemberFromOrganizationResponse {
+  Organization organization = 1;
+}
+
+message Organization {
+  string id = 1;
+  string name = 2;
+  repeated Member members = 3;
+  bool has_over_usage_protection = 4;
+}

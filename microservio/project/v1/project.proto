@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package microservio.project.v1;
+
+option go_package = "github.com/microserv-io/microservio-apis-go/project/v1;project";
+
+service ProjectService {
+  rpc ListProjects(ListProjectsRequest) returns (stream ListProjectsResponse) {}
+  rpc GetProjectByID(GetProjectByIDRequest) returns (GetProjectByIDResponse) {}
+  rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse) {}
+  rpc UpdateProject(UpdateProjectRequest) returns (UpdateProjectResponse) {}
+}
+
+message ListProjectsRequest {
+  string organization_id = 1;
+}
+
+message ListProjectsResponse {
+  repeated Project projects = 1;
+}
+
+message GetProjectByIDRequest {
+  string organization_id = 1;
+  string project_id = 2;
+}
+
+message GetProjectByIDResponse {
+  Project project = 1;
+}
+
+message Project {
+  string id = 1;
+  string name = 2;
+  string organization_id = 3;
+  string cloud_provider = 4;
+  string region = 5;
+}
+
+message CreateProjectRequest {
+  string organization_id = 1;
+  string name = 2;
+  string region = 3;
+}
+
+message CreateProjectResponse {
+  Project project = 1;
+}
+
+message UpdateProjectRequest {
+  string organization_id = 1;
+  string id = 2;
+  string name = 3;
+  string region = 4;
+}
+
+message UpdateProjectResponse {
+  Project project = 1;
+}
