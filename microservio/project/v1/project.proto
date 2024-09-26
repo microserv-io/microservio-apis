@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package microservio.project.v1;
 
-option go_package = "github.com/microserv-io/microservio-apis-go/project/v1;project";
+option go_package = "github.com/microserv-io/microserv-io-grpc-go/microservio/project/v1;project";
 
 service ProjectService {
   rpc ListProjects(ListProjectsRequest) returns (stream ListProjectsResponse) {}

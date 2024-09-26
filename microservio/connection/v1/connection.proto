@@ -4,7 +4,7 @@ package microservio.connection.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/microserv-io/microservio-apis-go/microservio/connection/v1;connection";
+option go_package = "github.com/microserv-io/microserv-io-grpc-go/microservio/connection/v1;connection";
 
 service ConnectionService {
   rpc CreateConnection(CreateConnectionRequest) returns (CreateConnectionResponse) {}

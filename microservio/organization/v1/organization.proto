@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package microservio.organization.v1;
 
-option go_package = "github.com/microserv-io/microservio-apis-go/microservio/organization/v1;organization";
+option go_package = "github.com/microserv-io/microserv-io-grpc-go/microservio/organization/v1;organization";
 
 service OrganizationService {
   rpc ListOrganizations(ListOrganizationsRequest) returns (stream ListOrganizationsResponse) {}
